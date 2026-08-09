@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Soil Health - Sensor Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#4ade80",
+                      "tertiary-fixed": "#caead6",
+                      "surface-container": "#e7eeff",
+                      "surface": "#f9f9ff",
+                      "outline": "#6d7b6d",
+                      "surface-variant": "#d8e3fb",
+                      "on-tertiary-fixed-variant": "#314d3e",
+                      "primary": "#006d36",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#afceba",
+                      "background": "#f9f9ff",
+                      "on-secondary-container": "#306d58",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#cfdaf2",
+                      "tertiary": "#486554",
+                      "error-container": "#ffdad6",
+                      "on-primary-container": "#005e2d",
+                      "surface-container-low": "#f0f3ff",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed-variant": "#005227",
+                      "on-surface": "#111c2d",
+                      "secondary-container": "#adedd3",
+                      "inverse-on-surface": "#ecf1ff",
+                      "surface-bright": "#f9f9ff",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#95d3ba",
+                      "on-secondary-fixed": "#002117",
+                      "inverse-primary": "#4de082",
+                      "on-tertiary-fixed": "#042014",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#111c2d",
+                      "secondary-fixed": "#b0f0d6",
+                      "on-tertiary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#3b5748",
+                      "primary-fixed": "#6dfe9c",
+                      "surface-container-highest": "#d8e3fb",
+                      "primary-fixed-dim": "#4de082",
+                      "outline-variant": "#bccabb",
+                      "surface-container-high": "#dee8ff",
+                      "on-primary-fixed": "#00210c",
+                      "on-surface-variant": "#3d4a3e",
+                      "surface-tint": "#006d36",
+                      "tertiary-container": "#adccb8",
+                      "secondary": "#2b6954",
+                      "on-secondary-fixed-variant": "#0b513d",
+                      "inverse-surface": "#263143"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-padding-desktop": "40px",
+                      "container-padding-mobile": "20px",
+                      "card-gap": "32px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(30, 41, 59, 0.05);
+        }
+        .gauge-arc {
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 125.6; /* Half circle */
+            transform-origin: center;
+            transform: rotate(-180deg);
+            transition: stroke-dashoffset 1s ease-out;
+        }
+        .leaf-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 5C10 5 5 15 5 25C15 25 25 15 20 5Z' fill='%23006d36' fill-opacity='0.03'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen pt-16">
+<!-- TopAppBar (Shared Component) -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-container hover:bg-primary-container/10 dark:hover:bg-primary-container/20 transition-colors p-2 rounded-full cursor-pointer active:scale-95 duration-100" data-icon="more_vert">more_vert</span>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-container">Smart Soil Health</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-md text-label-md text-on-surface-variant">● Demo Mode</span>
+</div>
+</header>
+<!-- SideNavBar (Shared Component) - Hidden on Mobile, Visible on md -->
+<nav class="bg-surface-container-lowest dark:bg-inverse-surface shadow-lg dark:shadow-none fixed inset-y-0 left-0 z-[60] hidden md:flex flex-col p-4 h-full w-72 mt-16">
+<div class="mb-8 px-3 py-4 border-b border-outline-variant/30">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Smart Soil Health</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Precision Agriculture</p>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Active Tab -->
+<a class="bg-secondary-container text-on-secondary-container dark:bg-secondary dark:text-on-secondary rounded-xl flex items-center gap-4 p-3 font-label-md text-label-md hover:bg-surface-variant dark:hover:bg-surface-container-highest transition-all active:translate-x-1 duration-200" href="index.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                New Soil Test
+            </a>
+<!-- Inactive Tabs -->
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-4 p-3 font-label-md text-label-md hover:bg-surface-variant dark:hover:bg-surface-container-highest rounded-xl transition-all" href="date-time.html">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+                Date &amp; Time
+            </a>
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-4 p-3 font-label-md text-label-md hover:bg-surface-variant dark:hover:bg-surface-container-highest rounded-xl transition-all" href="history.html">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                Analysis History
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-72 flex-1 p-container-padding-mobile md:p-container-padding-desktop max-w-[1440px] mx-auto">
+<!-- Context Header & Progress -->
+<div class="mb-gutter max-w-4xl">
+<div class="flex items-center justify-between mb-4">
+<span class="bg-amber-100 text-amber-800 font-label-sm text-label-sm px-3 py-1 rounded-full uppercase tracking-wider font-bold">Sample Data • Demo Mode</span>
+<span class="font-label-sm text-label-sm text-outline font-medium">Step 1 of 5</span>
+</div>
+<div class="flex gap-2 mb-8 w-full max-w-md">
+<div class="h-2 flex-1 bg-primary rounded-full"></div>
+<div class="h-2 flex-1 bg-surface-variant rounded-full"></div>
+<div class="h-2 flex-1 bg-surface-variant rounded-full"></div>
+<div class="h-2 flex-1 bg-surface-variant rounded-full"></div>
+<div class="h-2 flex-1 bg-surface-variant rounded-full"></div>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2 relative z-10">Soil Sensor Analysis</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Monitor soil nutrients and environmental conditions in real time.</p>
+</div>
+<!-- Sensor Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-card-gap">
+<!-- Nitrogen Card -->
+<div class="bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow overflow-hidden group hover:border-primary-container transition-colors relative">
+<div class="absolute top-0 right-0 w-32 h-32 leaf-pattern pointer-events-none rounded-tr-[24px]"></div>
+<div class="p-6 bg-[#DCFCE7]/30 border-b border-[#E2E8F0]/50 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Nitrogen <span class="text-on-surface-variant font-normal">(N)</span></h3>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Macronutrient</p>
+</div>
+<span class="material-symbols-outlined text-primary-container text-3xl">science</span>
+</div>
+<div class="p-6 flex flex-col items-center justify-center min-h-[160px]">
+<div class="text-center mb-4">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">120</span>
+<span class="font-body-md text-body-md text-on-surface-variant ml-1">mg/kg</span>
+</div>
+<span class="bg-green-100 text-green-800 font-label-md text-label-md px-4 py-1.5 rounded-full font-bold">Optimal</span>
+</div>
+</div>
+<!-- Phosphorus Card -->
+<div class="bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow overflow-hidden group hover:border-primary-container transition-colors relative">
+<div class="absolute top-0 right-0 w-32 h-32 leaf-pattern pointer-events-none rounded-tr-[24px]"></div>
+<div class="p-6 bg-[#DCFCE7]/30 border-b border-[#E2E8F0]/50 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Phosphorus <span class="text-on-surface-variant font-normal">(P)</span></h3>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Macronutrient</p>
+</div>
+<span class="material-symbols-outlined text-amber-500 text-3xl">psychiatry</span>
+</div>
+<div class="p-6 flex flex-col items-center justify-center min-h-[160px]">
+<div class="text-center mb-4">
+<span class="font-headline-xl text-headline-xl text-amber-600 font-bold">45</span>
+<span class="font-body-md text-body-md text-on-surface-variant ml-1">mg/kg</span>
+</div>
+<span class="bg-amber-100 text-amber-800 font-label-md text-label-md px-4 py-1.5 rounded-full font-bold">Moderate</span>
+</div>
+</div>
+<!-- Potassium Card -->
+<div class="bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow overflow-hidden group hover:border-primary-container transition-colors relative">
+<div class="absolute top-0 right-0 w-32 h-32 leaf-pattern pointer-events-none rounded-tr-[24px]"></div>
+<div class="p-6 bg-[#DCFCE7]/30 border-b border-[#E2E8F0]/50 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Potassium <span class="text-on-surface-variant font-normal">(K)</span></h3>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Macronutrient</p>
+</div>
+<span class="material-symbols-outlined text-primary-container text-3xl">grass</span>
+</div>
+<div class="p-6 flex flex-col items-center justify-center min-h-[160px]">
+<div class="text-center mb-4">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">80</span>
+<span class="font-body-md text-body-md text-on-surface-variant ml-1">mg/kg</span>
+</div>
+<span class="bg-green-100 text-green-800 font-label-md text-label-md px-4 py-1.5 rounded-full font-bold">Optimal</span>
+</div>
+</div>
+<!-- Soil Moisture Card -->
+<div class="bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow overflow-hidden group hover:border-primary-container transition-colors relative">
+<div class="absolute top-0 right-0 w-32 h-32 leaf-pattern pointer-events-none rounded-tr-[24px]"></div>
+<div class="p-6 bg-[#DCFCE7]/30 border-b border-[#E2E8F0]/50 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Soil Moisture</h3>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Environmental</p>
+</div>
+<span class="material-symbols-outlined text-blue-500 text-3xl">water_drop</span>
+</div>
+<div class="p-6 flex flex-col items-center justify-center min-h-[160px]">
+<div class="text-center mb-4">
+<span class="font-headline-xl text-headline-xl text-blue-600 font-bold">62</span>
+<span class="font-body-md text-body-md text-on-surface-variant ml-1">%</span>
+</div>
+<span class="bg-blue-100 text-blue-800 font-label-md text-label-md px-4 py-1.5 rounded-full font-bold">Good</span>
+</div>
+</div>
+<!-- Temperature Card -->
+<div class="bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow overflow-hidden group hover:border-primary-container transition-colors relative">
+<div class="absolute top-0 right-0 w-32 h-32 leaf-pattern pointer-events-none rounded-tr-[24px]"></div>
+<div class="p-6 bg-[#DCFCE7]/30 border-b border-[#E2E8F0]/50 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Temperature</h3>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Environmental</p>
+</div>
+<span class="material-symbols-outlined text-orange-500 text-3xl">thermostat</span>
+</div>
+<div class="p-6 flex flex-col items-center justify-center min-h-[160px]">
+<div class="text-center mb-4">
+<span class="font-headline-xl text-headline-xl text-orange-600 font-bold">29</span>
+<span class="font-body-md text-body-md text-on-surface-variant ml-1">°C</span>
+</div>
+<span class="bg-orange-100 text-orange-800 font-label-md text-label-md px-4 py-1.5 rounded-full font-bold">Suitable</span>
+</div>
+</div>
+<!-- Humidity Card -->
+<div class="bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow overflow-hidden group hover:border-primary-container transition-colors relative">
+<div class="absolute top-0 right-0 w-32 h-32 leaf-pattern pointer-events-none rounded-tr-[24px]"></div>
+<div class="p-6 bg-[#DCFCE7]/30 border-b border-[#E2E8F0]/50 flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Humidity</h3>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Environmental</p>
+</div>
+<span class="material-symbols-outlined text-cyan-500 text-3xl">cloud</span>
+</div>
+<div class="p-6 flex flex-col items-center justify-center min-h-[160px]">
+<div class="text-center mb-4">
+<span class="font-headline-xl text-headline-xl text-cyan-600 font-bold">74</span>
+<span class="font-body-md text-body-md text-on-surface-variant ml-1">%</span>
+</div>
+<span class="bg-cyan-100 text-cyan-800 font-label-md text-label-md px-4 py-1.5 rounded-full font-bold">Suitable</span>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="flex justify-end mt-12 pb-24">
+<button class="bg-primary-container text-on-primary-container hover:bg-[#3bc770] font-label-md text-label-md px-8 py-4 rounded-full flex items-center gap-2 transition-all shadow-[0_4px_14px_0_rgba(74,222,128,0.39)] hover:shadow-[0_6px_20px_rgba(74,222,128,0.23)] active:scale-95" onclick="window.location.href='soil-health.html'">
+                Continue to Soil Health
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline fixed bottom-0 w-full z-40 md:ml-72 md:w-[calc(100%-18rem)]">
+<div class="w-full py-4 px-container-padding-mobile md:px-container-padding-desktop flex justify-between items-center max-w-[1440px] mx-auto">
+<span class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant">© 2024 Smart Soil Health</span>
+<div class="flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-container transition-colors" href="#">Download PDF</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-container transition-colors" href="index.html">Save &amp; Exit</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple animation for gauge arcs if they were present
+        document.addEventListener('DOMContentLoaded', () => {
+            // Future logic for animating values or charts
+        });
+    </script>
+</body></html>

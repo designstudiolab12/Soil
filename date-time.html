@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Soil Health - Date &amp; Time</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#4ade80",
+                      "tertiary-fixed": "#caead6",
+                      "surface-container": "#e7eeff",
+                      "surface": "#f9f9ff",
+                      "outline": "#6d7b6d",
+                      "surface-variant": "#d8e3fb",
+                      "on-tertiary-fixed-variant": "#314d3e",
+                      "primary": "#006d36",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#afceba",
+                      "background": "#f9f9ff",
+                      "on-secondary-container": "#306d58",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#cfdaf2",
+                      "tertiary": "#486554",
+                      "error-container": "#ffdad6",
+                      "on-primary-container": "#005e2d",
+                      "surface-container-low": "#f0f3ff",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed-variant": "#005227",
+                      "on-surface": "#111c2d",
+                      "secondary-container": "#adedd3",
+                      "inverse-on-surface": "#ecf1ff",
+                      "surface-bright": "#f9f9ff",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#95d3ba",
+                      "on-secondary-fixed": "#002117",
+                      "inverse-primary": "#4de082",
+                      "on-tertiary-fixed": "#042014",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#111c2d",
+                      "secondary-fixed": "#b0f0d6",
+                      "on-tertiary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#3b5748",
+                      "primary-fixed": "#6dfe9c",
+                      "surface-container-highest": "#d8e3fb",
+                      "primary-fixed-dim": "#4de082",
+                      "outline-variant": "#bccabb",
+                      "surface-container-high": "#dee8ff",
+                      "on-primary-fixed": "#00210c",
+                      "on-surface-variant": "#3d4a3e",
+                      "surface-tint": "#006d36",
+                      "tertiary-container": "#adccb8",
+                      "secondary": "#2b6954",
+                      "on-secondary-fixed-variant": "#0b513d",
+                      "inverse-surface": "#263143"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-padding-desktop": "40px",
+                      "container-padding-mobile": "20px",
+                      "card-gap": "32px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Organic Softness - Leaf Accents */
+        .leaf-accent-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0C30 16.5685 16.5685 30 0 30C16.5685 30 30 43.4315 30 60C30 43.4315 43.4315 30 60 30C43.4315 30 30 16.5685 30 0Z' fill='%234ADE80' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Level 1 (Cards) Shadow */
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(30, 41, 59, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Desktop) / TopAppBar (Mobile) -->
+<!-- TopAppBar for Mobile -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding-mobile h-16 bg-surface border-b border-outline-variant md:hidden">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="more_vert">more_vert</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold">Smart Soil Health</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant">
+            ● Demo Mode
+        </div>
+</header>
+<!-- SideNavBar for Desktop -->
+<aside class="hidden md:flex flex-col p-4 bg-surface-container-lowest h-full w-72 left-0 shadow-lg fixed inset-y-0 z-[60]">
+<div class="flex flex-col gap-2 mb-8 px-3">
+<span class="font-headline-md text-headline-md font-bold text-primary">Smart Soil Health</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Precision Agriculture</span>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="text-on-surface-variant flex items-center gap-4 p-3 hover:bg-surface-variant rounded-xl transition-all font-label-md text-label-md" href="index.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                New Soil Test
+            </a>
+<a class="bg-secondary-container text-on-secondary-container rounded-xl flex items-center gap-4 p-3 hover:bg-surface-variant transition-all font-label-md text-label-md font-bold" href="date-time.html">
+<span class="material-symbols-outlined fill" data-icon="event">event</span>
+                Date &amp; Time
+            </a>
+<a class="text-on-surface-variant flex items-center gap-4 p-3 hover:bg-surface-variant rounded-xl transition-all font-label-md text-label-md" href="history.html">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                Analysis History
+            </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 mt-16 md:mt-0 md:ml-72 flex flex-col min-h-screen relative">
+<div class="flex-1 p-container-padding-mobile md:p-container-padding-desktop max-w-[1440px] mx-auto w-full flex flex-col">
+<!-- Page Header -->
+<header class="mb-gutter md:mb-card-gap">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Date &amp; Time</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Manage logging schedules and temporal data calibration.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-card-gap flex-1">
+<!-- Main Time Display Card -->
+<section class="lg:col-span-8 bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow overflow-hidden flex flex-col relative leaf-accent-bg">
+<!-- Subtle Natural Light Green Header Tint -->
+<div class="bg-[#DCFCE7] h-2 w-full absolute top-0 left-0"></div>
+<div class="p-8 md:p-12 flex flex-col justify-center items-center flex-1 text-center">
+<div class="font-headline-xl text-headline-xl text-primary mb-4 tracking-tight">11:30 AM</div>
+<div class="font-headline-md text-headline-md text-on-surface mb-2">09 August 2026</div>
+<div class="font-body-lg text-body-lg text-on-surface-variant uppercase tracking-widest font-semibold">Sunday</div>
+</div>
+</section>
+<!-- Calendar/Utility Column -->
+<section class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Mini Calendar Card -->
+<div class="bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-label-md text-label-md text-on-surface uppercase">August 2026</h2>
+<div class="flex gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors text-[20px]" data-icon="chevron_left">chevron_left</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors text-[20px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-y-4 text-center font-label-sm text-label-sm">
+<!-- Days Header -->
+<div class="text-on-surface-variant">S</div>
+<div class="text-on-surface-variant">M</div>
+<div class="text-on-surface-variant">T</div>
+<div class="text-on-surface-variant">W</div>
+<div class="text-on-surface-variant">T</div>
+<div class="text-on-surface-variant">F</div>
+<div class="text-on-surface-variant">S</div>
+<!-- Dummy Dates (Partial for visual) -->
+<div class="text-on-surface-variant opacity-50">26</div>
+<div class="text-on-surface-variant opacity-50">27</div>
+<div class="text-on-surface-variant opacity-50">28</div>
+<div class="text-on-surface-variant opacity-50">29</div>
+<div class="text-on-surface-variant opacity-50">30</div>
+<div class="text-on-surface-variant opacity-50">31</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">1</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">2</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">3</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">4</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">5</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">6</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">7</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">8</div>
+<!-- Active Date -->
+<div class="bg-primary text-on-primary rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer font-bold shadow-md">9</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">10</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">11</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">12</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">13</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">14</div>
+<div class="text-on-surface hover:bg-surface-variant rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer transition-colors">15</div>
+</div>
+</div>
+<!-- Quick Actions Card -->
+<div class="bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] card-shadow p-6 flex-1">
+<h3 class="font-label-md text-label-md text-on-surface mb-4 uppercase">Timezone Settings</h3>
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Current Location</label>
+<div class="bg-surface rounded-lg border border-slate-200 p-3 flex justify-between items-center text-sm font-medium focus-within:border-primary-container focus-within:ring-2 focus-within:ring-primary-container/50 transition-all">
+<span>Pacific Time (PT)</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="location_on">location_on</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 px-4 rounded-xl hover:bg-primary/90 transition-colors shadow-sm flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="sync">sync</span>
+                                Sync with Field Sensors
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-6 px-container-padding-desktop flex justify-between items-center max-w-7xl mx-auto bg-surface-container-low border-t border-outline-variant mt-auto">
+<span class="font-label-md text-label-md text-on-surface-variant">© 2024 Smart Soil Health</span>
+<div class="flex gap-4">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Download PDF</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="index.html">Save &amp; Exit</a>
+</div>
+</footer>
+</main>
+</body></html>

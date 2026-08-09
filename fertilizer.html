@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fertilizer Recommendation - Smart Soil Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#4ade80",
+                        "tertiary-fixed": "#caead6",
+                        "surface-container": "#e7eeff",
+                        "surface": "#f9f9ff",
+                        "outline": "#6d7b6d",
+                        "surface-variant": "#d8e3fb",
+                        "on-tertiary-fixed-variant": "#314d3e",
+                        "primary": "#006d36",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#afceba",
+                        "background": "#f9f9ff",
+                        "on-secondary-container": "#306d58",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#cfdaf2",
+                        "tertiary": "#486554",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#005e2d",
+                        "surface-container-low": "#f0f3ff",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#005227",
+                        "on-surface": "#111c2d",
+                        "secondary-container": "#adedd3",
+                        "inverse-on-surface": "#ecf1ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed": "#002117",
+                        "inverse-primary": "#4de082",
+                        "on-tertiary-fixed": "#042014",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#111c2d",
+                        "secondary-fixed": "#b0f0d6",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#3b5748",
+                        "primary-fixed": "#6dfe9c",
+                        "surface-container-highest": "#d8e3fb",
+                        "primary-fixed-dim": "#4de082",
+                        "outline-variant": "#bccabb",
+                        "surface-container-high": "#dee8ff",
+                        "on-primary-fixed": "#00210c",
+                        "on-surface-variant": "#3d4a3e",
+                        "surface-tint": "#006d36",
+                        "tertiary-container": "#adccb8",
+                        "secondary": "#2b6954",
+                        "on-secondary-fixed-variant": "#0b513d",
+                        "inverse-surface": "#263143"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-padding-desktop": "40px",
+                        "container-padding-mobile": "20px",
+                        "card-gap": "32px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        .leaf-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83c-13.6 13.6-13.6 35.65 0 49.25l-.83.83C40.05 36.333 40.05 14.283 54.627 0zm-14.15 0l.83.83c-9.62 9.61-9.62 25.19 0 34.8l-.83.83C30.016 25.26 30.016 8.44 40.477 0zm-14.15 0l.83.83c-5.63 5.63-5.63 14.77 0 20.4l-.83.83C19.866 14.19 19.866 3.91 26.327 0zm-14.15 0l.83.83c-1.65 1.65-1.65 4.33 0 5.98l-.83.83C9.716 3.12 9.716 1.05 12.177 0z' fill='%23006d36' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-full flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="more_vert">more_vert</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">Smart Soil Health</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant">● Demo Mode</span>
+</div>
+</header>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar -->
+<nav class="hidden md:flex fixed inset-y-0 left-0 z-[60] flex-col p-4 bg-surface-container-lowest h-full w-72 mt-16 shadow-lg border-r border-outline-variant">
+<div class="mb-8 px-3">
+<img alt="Smart Soil Logo" class="h-10 w-auto mb-4" data-alt="A minimalist logo for a precision agriculture platform featuring a stylized green leaf emerging from dark brown soil, clean lines, professional corporate style, flat design, white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAuWSEo4UMJNDI66kbdaNUja-QQ9lJK5fWiUYIuod1iWODGQNcc8M8YwNoGKbyF9a_leaDxLDFFwlCuue7mWZh5hFfZMVLRWcCqUID_4lACGaUw14VVcxcaIdWRV3oDjKOM8DoBJ7NR0kO9YqUFjK8IEHpVZo7-S3XHKxhJcDpvNeZLwNJdh_qGHaeMGW3ME4ZNX3tmU6MFV5hIR70EC3RguY8ZL5ps6AQC577Yx3WxQSMWzh1UDFwIA"/>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Smart Soil Health</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Precision Agriculture</p>
+</div>
+<ul class="flex flex-col gap-2">
+<li>
+<a class="bg-secondary-container text-on-secondary-container rounded-xl flex items-center gap-4 p-3 font-label-md text-label-md transition-all" href="index.html">
+<span class="material-symbols-outlined" data-icon="home" data-weight="fill">home</span>
+                        New Soil Test
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant flex items-center gap-4 p-3 hover:bg-surface-variant rounded-xl transition-all font-label-md text-label-md" href="date-time.html">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+                        Date &amp; Time
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant flex items-center gap-4 p-3 hover:bg-surface-variant rounded-xl transition-all font-label-md text-label-md" href="history.html">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                        Analysis History
+                    </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-8 md:ml-72 flex flex-col gap-8">
+<!-- Progress Indicator -->
+<div class="flex items-center gap-2 mb-4">
+<div class="flex items-center text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined mr-1" data-icon="check_circle" data-weight="fill">check_circle</span>
+                    Step 01
+                </div>
+<div class="h-px w-8 bg-primary"></div>
+<div class="flex items-center text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined mr-1" data-icon="check_circle" data-weight="fill">check_circle</span>
+                    Step 02
+                </div>
+<div class="h-px w-8 bg-primary"></div>
+<div class="flex items-center text-on-surface font-label-md text-label-md bg-secondary-container px-3 py-1 rounded-full">
+<span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                    Step 03
+                </div>
+</div>
+<!-- Header Section -->
+<section class="relative bg-surface-container-lowest rounded-[24px] p-8 border border-[#E2E8F0] shadow-[0px_4px_20px_rgba(30,41,59,0.05)] overflow-hidden">
+<div class="leaf-pattern absolute inset-0 rounded-[24px] pointer-events-none"></div>
+<div class="relative z-10">
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-2">Nutrient &amp; Fertilizer Recommendation</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Improve soil fertility based on the detected nutrient condition.</p>
+</div>
+</section>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-card-gap">
+<!-- Table Section -->
+<section class="lg:col-span-2 bg-surface-container-lowest rounded-[24px] border border-[#E2E8F0] shadow-[0px_4px_20px_rgba(30,41,59,0.05)] overflow-hidden flex flex-col hover:border-primary transition-colors">
+<div class="bg-[#DCFCE7] p-6 border-b border-[#E2E8F0]">
+<h2 class="font-headline-md text-headline-md text-on-primary-container">Current Nutrient Status</h2>
+</div>
+<div class="p-6 overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md border-collapse">
+<thead>
+<tr class="text-on-surface-variant font-label-md text-label-md border-b border-[#E2E8F0]">
+<th class="pb-4 pr-4">Nutrient</th>
+<th class="pb-4 px-4">Current</th>
+<th class="pb-4 px-4">Status</th>
+<th class="pb-4 pl-4">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-[#E2E8F0] group hover:bg-surface-container transition-colors">
+<td class="py-4 pr-4 font-semibold text-on-surface">Nitrogen (N)</td>
+<td class="py-4 px-4 text-on-surface-variant">45 mg/kg</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#ecfdf5] text-[#047857] font-label-sm text-label-sm">
+                                            Optimal
+                                        </span>
+</td>
+<td class="py-4 pl-4 text-on-surface-variant">Maintain current levels</td>
+</tr>
+<tr class="border-b border-[#E2E8F0] group hover:bg-surface-container transition-colors">
+<td class="py-4 pr-4 font-semibold text-on-surface">Phosphorus (P)</td>
+<td class="py-4 px-4 text-on-surface-variant">12 mg/kg</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#fef2f2] text-[#b91c1c] font-label-sm text-label-sm">
+                                            Deficient
+                                        </span>
+</td>
+<td class="py-4 pl-4 text-on-surface-variant">+20 kg/ha</td>
+</tr>
+<tr class="border-b border-[#E2E8F0] group hover:bg-surface-container transition-colors">
+<td class="py-4 pr-4 font-semibold text-on-surface">Potassium (K)</td>
+<td class="py-4 px-4 text-on-surface-variant">150 mg/kg</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#fffbeb] text-[#b45309] font-label-sm text-label-sm">
+                                            Moderate
+                                        </span>
+</td>
+<td class="py-4 pl-4 text-on-surface-variant">+5 kg/ha</td>
+</tr>
+<tr class="group hover:bg-surface-container transition-colors">
+<td class="py-4 pr-4 font-semibold text-on-surface">Organic Matter</td>
+<td class="py-4 px-4 text-on-surface-variant">2.8%</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#ecfdf5] text-[#047857] font-label-sm text-label-sm">
+                                            Optimal
+                                        </span>
+</td>
+<td class="py-4 pl-4 text-on-surface-variant">Maintain current levels</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Recommendation Card & Warning -->
+<div class="flex flex-col gap-6">
+<section class="bg-surface-container-lowest rounded-[24px] border-2 border-primary shadow-[0px_10px_30px_rgba(30,41,59,0.08)] p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary-container opacity-20 rounded-bl-full pointer-events-none"></div>
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="science">science</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Phosphorus Improvement</h3>
+</div>
+<div class="bg-surface p-4 rounded-xl mb-4 border border-outline-variant">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Suggested Application</p>
+<p class="font-body-lg text-body-lg text-primary font-semibold">Phosphate Fertilizer (SSP/TSP)</p>
+</div>
+<div class="space-y-4">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span> Why recommended
+                                </h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Current levels are below the required threshold for optimal root development and early plant growth.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-lg" data-icon="trending_up">trending_up</span> Expected benefit
+                                </h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Enhances root structure, improves stalk strength, and increases crop yield potential by 15-20%.</p>
+</div>
+</div>
+</section>
+<div class="bg-[#fff7ed] rounded-xl p-4 border border-[#fed7aa] flex items-start gap-3">
+<span class="material-symbols-outlined text-[#ea580c] mt-0.5" data-icon="warning">warning</span>
+<p class="font-body-md text-body-md text-[#9a3412]">
+<strong class="font-semibold">Important:</strong> Fertilizer recommendations are general guidance. Please confirm using detailed local soil testing and agricultural expertise before application.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col-reverse sm:flex-row justify-between items-center mt-8 pt-8 border-t border-outline-variant gap-4">
+<button class="w-full sm:w-auto px-6 py-3 rounded-full border border-[#dcfce7] text-primary font-label-md text-label-md hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                    Back to Soil Health
+                </button>
+<button class="w-full sm:w-auto px-8 py-3 rounded-full bg-[#4ADE80] text-[#006d36] font-label-md text-label-md hover:bg-[#86efac] transition-colors shadow-sm flex items-center justify-center gap-2 font-bold" onclick="window.location.href='crop-recommendation.html'">
+                    Continue to Crop Recommendation
+                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-6 px-container-padding-desktop flex justify-between items-center max-w-[1440px] mx-auto border-t border-outline-variant bg-surface-container-low mt-auto relative z-50">
+<span class="font-label-md text-label-md text-on-surface-variant">© 2024 Smart Soil Health</span>
+<div class="flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Download PDF</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="index.html">Save &amp; Exit</a>
+</div>
+</footer>
+</body></html>
